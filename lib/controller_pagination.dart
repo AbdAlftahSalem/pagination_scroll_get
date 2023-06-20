@@ -26,7 +26,6 @@ class ControllerPagination extends GetxController {
         try {
           changeLoadingStatus(LoadingStatus.loading);
           await loadingFunction();
-          await Future.delayed(const Duration(seconds: 3));
           changeLoadingStatus(LoadingStatus.success);
         } catch (e) {
           changeLoadingStatus(LoadingStatus.error);
