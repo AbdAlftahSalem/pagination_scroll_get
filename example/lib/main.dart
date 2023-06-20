@@ -17,21 +17,26 @@ class MyApp extends StatelessWidget {
         body: PaginationScrollScreen(
           showWidget: SingleChildScrollView(
             controller: scrollController,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            scrollDirection: Axis.horizontal,
+            child: Row(
               children: List.generate(
-                50,
-                    (index) => Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
+                20,
+                (index) => Container(
+                  width: 200,
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 10,
+                  ),
                   height: 30,
                   color: Colors.teal,
-                  child: Text("$index"),
+                  child: Center(child: Text("$index")),
                 ),
               ),
             ),
           ),
           scrollController: scrollController,
           loadingFunction: () => print("Load more"),
+          scrollDirection: Axis.horizontal,
         ),
       ),
     );

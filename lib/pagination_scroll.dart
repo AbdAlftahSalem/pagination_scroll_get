@@ -13,6 +13,8 @@ class PaginationScrollScreen extends StatefulWidget {
 
   final Function loadingFunction;
 
+  final double paddingTop, paddingBottom, paddingStart, paddingEnd;
+
   const PaginationScrollScreen({
     Key? key,
     required this.showWidget,
@@ -21,6 +23,10 @@ class PaginationScrollScreen extends StatefulWidget {
     this.loadingWidget = const CupertinoActivityIndicator(),
     this.errorWidget = const Text("There is an error"),
     this.scrollDirection = Axis.vertical,
+    this.paddingTop = 20,
+    this.paddingBottom = 20,
+    this.paddingStart = 16,
+    this.paddingEnd = 16,
   }) : super(key: key);
 
   @override
@@ -36,22 +42,53 @@ class _PaginationScrollScreenState extends State<PaginationScrollScreen> {
         loadingFunction: widget.loadingFunction,
       ),
       builder: (controller) {
-        return Container(
-          // color: Colors.red,
-          child: Column(
-            children: [
-              Expanded(child: widget.showWidget),
-              // const SizedBox(height: 20),
-              if (controller.loadingStatus == LoadingStatus.loading)
-                widget.loadingWidget,
-              if (controller.loadingStatus == LoadingStatus.error)
-                widget.errorWidget,
-              // const SizedBox(height: 20),
-            ],
-          ),
-        );
+        // return widget.showWidget;
+        return widget.scrollDirection == Axis.vertical
+            ? Column(
+                children: [
+                  Expanded(
+                    child: widget.showWidget,
+                  ),
+                  widgetShow(controller),
+                ],
+              )
+            : Row(
+                children: [
+                  Expanded(child: widget.showWidget),
+                  if (controller.loadingStatus == LoadingStatus.loading)
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(
+                        start: widget.paddingStart,
+                        end: widget.paddingEnd,
+                      ),
+                      child: widget.loadingWidget,
+                    ),
+                ],
+              );
       },
     );
   }
-}
 
+  Widget widgetShow(ControllerPagination controller) {
+    return Column(
+      children: [
+        if (controller.loadingStatus == LoadingStatus.loading)
+          Padding(
+            padding: EdgeInsets.only(
+              top: widget.paddingTop,
+              bottom: widget.paddingBottom,
+            ),
+            child: widget.loadingWidget,
+          ),
+        if (controller.loadingStatus == LoadingStatus.error)
+          Padding(
+            padding: EdgeInsets.only(
+              top: widget.paddingTop,
+              bottom: widget.paddingBottom,
+            ),
+            child: widget.errorWidget,
+          ),
+      ],
+    );
+  }
+}
