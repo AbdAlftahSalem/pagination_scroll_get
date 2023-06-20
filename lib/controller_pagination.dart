@@ -15,7 +15,6 @@ class ControllerPagination extends GetxController {
 
   void changeLoadingStatus(LoadingStatus loadingStatus) {
     this.loadingStatus = loadingStatus;
-    print(loadingStatus);
     update();
   }
 
