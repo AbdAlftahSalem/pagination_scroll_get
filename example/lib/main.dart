@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pagination_scroll_get/pagination_scroll.dart';
-import 'package:pagination_scroll_get_example/dio_manger.dart';
 import 'package:pagination_scroll_get_example/get_data.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  DioManagerClass.getInstance.init();
 
   runApp(MyApp());
 }

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:pagination_scroll_get_example/dio_manger.dart';
 import 'package:pagination_scroll_get_example/post_model.dart';
 
 enum ApiCallStatus {
@@ -18,26 +17,32 @@ class GetData extends GetxController {
     update();
   }
 
-  getData() async {
+  getData({int length = 10}) async {
     changeApiCallStatus(ApiCallStatus.loading);
-    final response =
-        await DioManagerClass.getInstance.dioGetMethod(url: '/posts');
 
-    for (var i in response.data) {
-      posts.add(PostModel.fromMap(i));
+    for (int i = 0; i < length; ++i) {
+      posts.add(PostModel(
+        userId: i,
+        id: i,
+        title: "Title ${i + 1}",
+        body: "Body ${i + 1}",
+      ));
     }
+    await Future.delayed(const Duration(seconds: 2));
     changeApiCallStatus(ApiCallStatus.success);
     update();
   }
 
-  loadMoreData() async {
-    await Future.delayed(const Duration(seconds: 4));
-    posts.add(PostModel(
-      userId: 0,
-      id: 0,
-      title: "title",
-      body: "body",
-    ));
+  loadMoreData({int length = 10}) async {
+    for (int i = 0; i < length; ++i) {
+      posts.add(PostModel(
+        userId: i,
+        id: i,
+        title: "Title ${i + 1}",
+        body: "Body ${i + 1}",
+      ));
+    }
+    await Future.delayed(const Duration(seconds: 2));
     update();
   }
 
