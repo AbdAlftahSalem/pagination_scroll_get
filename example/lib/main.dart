@@ -25,11 +25,13 @@ class MyApp extends StatelessWidget {
           init: GetData(),
           builder: (logic) {
             return logic.apiCallStatus == ApiCallStatus.loading
-                ? const Center(child: CupertinoActivityIndicator())
+                ? const Center(child: CupertinoActivityIndicator()
+            )
                 : PaginationScrollScreen(
                     showWidget: ListView.separated(
                       controller: scrollController,
                       itemCount: logic.posts.length,
+                      scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => Container(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -66,7 +68,7 @@ class MyApp extends StatelessWidget {
                     ),
                     scrollController: scrollController,
                     loadingFunction: () => logic.loadMoreData(),
-                    scrollDirection: Axis.vertical,
+                    scrollDirection: Axis.horizontal,
                   );
           },
         ),
