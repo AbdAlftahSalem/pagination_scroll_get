@@ -1,10 +1,11 @@
 name: pagination_scroll_get
 description: A Flutter package than allow expand and collapse text dynamically horizontal or vertical.
 version: 0.0.1
-homepage:
+homepage: https://github.com/AbdAlftahSalem/pagination_scroll_get
+repository: https://github.com/AbdAlftahSalem/pagination_scroll_get
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: '>=2.19.2 <4.0.0'
   flutter: ">=2.5.0"
 
 dependencies:
