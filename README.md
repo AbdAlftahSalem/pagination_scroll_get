@@ -1,9 +1,9 @@
-# readmore
+# pagination_scroll_get
 
-A Flutter package than allow expand and collapse text dynamically horizontal or vertical.
+A Flutter widget for infinite-scroll pagination: calls your load-more function when a list reaches its end, vertical or horizontal, with loading and error states (GetX).
 
-<img src="assets/new.gif" width="200" height="400" alt="readmore">
-<img src="assets/new2.gif" width="200" height="400" alt="readmore">
+<img src="assets/new.gif" width="200" height="400" alt="pagination_scroll_get demo">
+<img src="assets/new2.gif" width="200" height="400" alt="pagination_scroll_get demo">
 
 ## usage:
 
